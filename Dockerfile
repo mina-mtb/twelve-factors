@@ -11,6 +11,7 @@ RUN pip install -r requirements.txt
 
 # Now copy the rest of the application code
 COPY main.py .
+COPY .env .
 
 # Define how to run the application (example)
 CMD ["python", "main.py"]
