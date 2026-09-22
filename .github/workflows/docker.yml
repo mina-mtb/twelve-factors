@@ -1,0 +1,39 @@
+name: python ci
+on: [push]
+jobs:
+  docker: 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: chekout
+      uses: actions/checkout@v4
+
+    - name: .env
+      run: |
+        cat > .env <<EOF
+        APP_MODE=${{ secrets.APP_MODE }}
+        IP_APT_URL=${{ secrets.IP_API_URL}}
+        WEATHER_API_URL=${{ secrets.WEATHER_API_URL}}
+        WETHEAR_API_KEY=${{ secrets.WEATHER_API_KEY}}
+        EOF
+
+    - name: login to ghcr
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{github.actor}}
+        password: ${{ secrets.GITHUB_TOKEN}}
+
+      
+
+    - name: docker image
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: |
+          ghcr.io/${{github.repository}}:latest
+          ghcr.io/${{github.repository}}:${{github.sha}}
+
+
+     
