@@ -6,10 +6,15 @@ from dotenv import load_dotenv
 
 # Load the environment variables from .env file
 load_dotenv()
+
 app_mode = os.environ.get('APP_MODE')
 ip_api_url = os.environ.get('IP_API_URL').__str__()
 weather_api_url = os.environ.get('WEATHER_API_URL').__str__()
 weather_api_key = os.environ.get('WEATHER_API_KEY').__str__()
+print(app_mode)
+print(ip_api_url)
+print(weather_api_key)
+print(weather_api_url)
 res_ip = requests.get(ip_api_url)
 res_weather = requests.get(weather_api_url + "/current.json", params={"key": weather_api_key, "q": res_ip.json().get("city")})  
 
