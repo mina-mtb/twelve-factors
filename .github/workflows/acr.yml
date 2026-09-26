@@ -1,4 +1,4 @@
-name: python ci
+name: acr
 on: [push]
 permissions: 
   contents: read

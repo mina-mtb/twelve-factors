@@ -1,4 +1,4 @@
-name: python ci
+name: ghcr
 on: [push]
 permissions: 
   contents: read
