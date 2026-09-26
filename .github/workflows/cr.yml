@@ -26,6 +26,7 @@ jobs:
         registry: ghcr.io
         username: ${{github.actor}}
         password: ${{ secrets.GITHUB_TOKEN}}
+
  
     - name: login to acr
       uses: azure/docker-login@v2
@@ -34,6 +35,8 @@ jobs:
           username: ${{ secrets.ACR_USER_NAME}}
           password: ${{ secrets.ACR_PASSWORD}}
 
+
+
     - run: |
-        docker pull contoso.azurecr.io/private/image:latest
+        docker pull weather1.azurecr.io/private/image:latest
         docker pull private/image:latest
