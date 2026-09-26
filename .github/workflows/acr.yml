@@ -28,5 +28,5 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD}}
 
     - run: |
-        docker build . -t weather1.azurecr.io/k8sdemo:${{ github.sha }}
-        docker push weather1.azurecr.io/k8sdemo:${{ github.sha }}
+        docker build . -t weather1.azurecr.io/weather:0.1.0
+        docker push weather1.azurecr.io/weather:0.1.0

@@ -36,7 +36,3 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD}}
 
 
-
-    - run: |
-        docker pull weather1.azurecr.io/private/image:latest
-        docker pull private/image:latest
