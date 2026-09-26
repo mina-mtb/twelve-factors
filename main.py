@@ -118,6 +118,9 @@ def main():
     show_mode= args.mode
     show_city=args.city
 
+    image_source = os.environ.get("IMAGE_SOURCE", "unknown")
+    print(f"Image source: {image_source}")
+
     version = os.environ.get("APP_VERSION", "unknown")
     print(f"Version: {version}")
 
