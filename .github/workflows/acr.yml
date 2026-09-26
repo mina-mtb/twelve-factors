@@ -1,0 +1,32 @@
+name: python ci
+on: [push]
+permissions: 
+  contents: read
+  packages: write
+jobs:
+  docker: 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: chekout
+      uses: actions/checkout@v4
+
+    - name: .env
+      run: |
+        cat > .env <<EOF
+        APP_MODE="prod"
+        IP_API_URL=${{ secrets.IP_API_URL}}
+        WEATHER_API_URL=${{ secrets.WEATHER_API_URL}}
+        WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY}}
+        EOF
+
+    - name: login to acr
+      uses: azure/docker-login@v2
+      with:
+          login-server: weather1.azurecr.io
+          username: ${{ secrets.ACR_USER_NAME}}
+          password: ${{ secrets.ACR_PASSWORD}}
+
+    - run: |
+        docker build . -t weather1.azurecr.io/k8sdemo:${{ github.sha }}
+        docker push weather1.azurecr.io/k8sdemo:${{ github.sha }}
