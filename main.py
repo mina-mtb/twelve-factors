@@ -118,6 +118,9 @@ def main():
     show_mode= args.mode
     show_city=args.city
 
+    version = os.environ.get("APP_VERSION", "unknown")
+    print(f"Version: {version}")
+
     if not show_mode:  
         app_mode = os.environ.get('APP_MODE') 
     elif show_mode=="l":
