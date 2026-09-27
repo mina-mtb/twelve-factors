@@ -18,6 +18,7 @@ jobs:
         IP_API_URL=${{ secrets.IP_API_URL}}
         WEATHER_API_URL=${{ secrets.WEATHER_API_URL}}
         WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY}}
+        IMAGE_SOURCE=ACR
         EOF
 
     - name: login to acr

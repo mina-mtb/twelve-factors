@@ -18,6 +18,7 @@ jobs:
         IP_API_URL=${{ secrets.IP_API_URL}}
         WEATHER_API_URL=${{ secrets.WEATHER_API_URL}}
         WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY}}
+        IMAGE_SOURCE=GHCR
         EOF
 
     - name: login to ghcr
@@ -35,7 +36,7 @@ jobs:
         context: .
         push: true
         tags: |
-          ghcr.io/${{github.repository}}:o.2.0
+          ghcr.io/${{github.repository}}:0.2.0
           ghcr.io/${{github.repository}}:${{github.sha}}
 
 
