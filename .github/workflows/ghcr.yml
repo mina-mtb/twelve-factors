@@ -39,7 +39,7 @@ jobs:
         context: .
         push: true
         tags: |
-          ghcr.io/${{github.repository}}:$APP_VERSION
+          ghcr.io/${{github.repository}}:${{env.APP_VERSION}}
           ghcr.io/${{github.repository}}:${{github.sha}}
 
 
