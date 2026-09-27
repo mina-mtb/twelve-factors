@@ -6,6 +6,10 @@ permissions:
 jobs:
   docker: 
     runs-on: ubuntu-latest
+    
+    env:
+      IMAGE_SOURCE: GHCR
+      APP_VERSION: 0.1.1
 
     steps:
     - name: chekout
@@ -18,7 +22,8 @@ jobs:
         IP_API_URL=${{ secrets.IP_API_URL}}
         WEATHER_API_URL=${{ secrets.WEATHER_API_URL}}
         WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY}}
-        IMAGE_SOURCE=GHCR
+        IMAGE_SOURCE=$IMAGE_SOURCE
+        APP_VERSION=$APP_VERSION
         EOF
 
     - name: login to ghcr
@@ -28,15 +33,13 @@ jobs:
         username: ${{github.actor}}
         password: ${{ secrets.GITHUB_TOKEN}}
 
-      
-
     - name: docker image
       uses: docker/build-push-action@v6
       with:
         context: .
         push: true
         tags: |
-          ghcr.io/${{github.repository}}:0.2.0
+          ghcr.io/${{github.repository}}:$APP_VERSION
           ghcr.io/${{github.repository}}:${{github.sha}}
 
 
